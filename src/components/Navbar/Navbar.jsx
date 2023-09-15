@@ -18,6 +18,8 @@ const Navbar = () => {
     const [showLinks, setShowLinks] = useState(false);
 //defining the croll effect in order to add shaddow effects 
     const [isScrolled, setIsScrolled] = useState(false);
+    //settting the active section link to be highlited
+    const [activeSection, setActiveSection] = useState('');
     
      // Add a resize event listener when the component mounts
     useEffect(() => {
@@ -32,6 +34,7 @@ const Navbar = () => {
         window.removeEventListener('resize', handleResize);
         };
     }, [windowWidth]);
+    //handling isScroll
     useEffect(() => {
         const handleScroll = () =>{
             setIsScrolled(window.scrollY > 0);
@@ -45,10 +48,41 @@ const Navbar = () => {
 
 
     }, [])
+    //handling active section link
+    useEffect(() => {
+        const options ={
+            root:null,
+            rootMargin:'0px',
+            threshold:0.4
+        }
+        const handleIntersect = entries =>{
+            entries.forEach(entry =>{
+                if (entry.isIntersecting){
+                    setActiveSection(entry.target.id)
+                }
+            })
+        }
+
+        const observer = new IntersectionObserver(handleIntersect, options);
+
+        const section = document.querySelectorAll('section');
+
+        section.forEach(section =>{
+            observer.observe(section);
+        })
+
+        return () =>{
+            section.forEach(section => {
+                observer.unobserve(section);
+            })
+        }
+
+
+    }, [])
 
     const handleSelectionClick = (event) =>{
-        event.preventDefaults();
-        const sectionId = event.target.getAtribute("href").substring(1);
+        event.preventDefault();
+        const sectionId = event.target.getAttribute("href").substring(1);
         const section = document.getElementById(sectionId);
         if (section){
             const navbarHeight =document.querySelector("nav").offsetHeight;
@@ -88,6 +122,7 @@ const Navbar = () => {
                                         href={`#${link.id}`}
                                         label={link.label}
                                         onClick={handleSelectionClick}
+                                        active={activeSection === link.id}
                                     />
                                     
                                 ))}
