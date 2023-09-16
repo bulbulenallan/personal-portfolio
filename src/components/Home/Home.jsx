@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Home.module.css'
 
 const Home = () => {
+    const items =['Designer', 'Freelancer','Developer','ISP'];
+    const [currentIndex,setCurrentIndex]= useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() =>{
+            setCurrentIndex((prevIndex) => (prevIndex +1) % items.length)
+        },3000);
+
+        return() => clearInterval(interval);
+
+    },[items])
+
+
   return (
     <section id="home">
         <div className="container">
@@ -14,6 +27,7 @@ const Home = () => {
                     <div className={styles['text-wrapper']}>
                         <p>
                             creative <span className={styles.items}>
+                                {items[currentIndex]}
 
                             </span>
                         </p>
@@ -35,7 +49,7 @@ const Home = () => {
                 </div>
                 <div className={styles.circle}>
                     <div className={styles.content}>
-                        <img src="./images/c.jpeg" alt="Bulbulen Allan KIpchumba" />
+                        <img src="./images/akbb.jpg" alt="Bulbulen Allan KIpchumba" />
                         <h2>Bulbulen Allan Kipchumba <br />
                         <span/>Web Developer</h2>
                         <a href="#contact">Hire Me</a>
