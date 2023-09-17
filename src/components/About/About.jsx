@@ -13,7 +13,7 @@ const About = () => {
             </div>
             <div className="grid">
                 <div className={styles['about-img']}>
-                    <img src="./images/ak.jpg" alt="Allan Kipchumba" />
+                    <img src="./images/c.jpeg" alt="Allan Kipchumba" />
                 </div>
                 <div className={styles['about-content']}>
 
