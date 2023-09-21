@@ -1,0 +1,33 @@
+const cardData =[
+    {
+        id:"1",
+        title:"css",
+        img:"./images/bottom.png",
+    },
+    {
+        id:"2",
+        title:"allan",
+        img:"./images/ak.jpg",
+    },
+    {
+        id:"3",
+        title:"Qeep",
+        img:"./images/logo.jpeg",
+    },
+    {
+        id:"4",
+        title:"",
+        img:"./images/akb.jpg",
+    },
+    {
+        id:"5",
+        title:"bulbulen",
+        img:"./images/ny.jpg",
+    },
+    {
+        id:"6",
+        title:"allan",
+        img:"./images/akbb.jpg",
+    }
+];
+export default cardData;
